@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+  <h2>Articulos</h2>
+
+  {% for post in posts %}
+    <div class="p-3">
+      <div class="card card-body border-0">
+        <div class="row">
+          <div class="col-3">
+            <img src="{{post.image.url}}" class="img-fluid" alt="{{post.title}}"> 
+          </div>
+          <div class="col-9 my-auto">
+            <h2>{{post.title}}</h2>
+            <p>{{post.date|date:"M d Y"|upper}}</p>
+            <p>{{post.description|striptags|truncatechars:200}}</p>
+            <a href="{% url 'blog:post_detail' post.id %}">Leer mas</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+
+{% endblock %}
